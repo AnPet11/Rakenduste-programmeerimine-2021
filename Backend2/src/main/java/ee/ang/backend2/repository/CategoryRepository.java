@@ -1,4 +1,4 @@
-package ee.anneli.backend2.repository;
+package ee.ang.backend2.repository;
 
 import ee.anneli.backend2.model.Category;
 import org.springframework.data.jpa.repository.JpaRepository;

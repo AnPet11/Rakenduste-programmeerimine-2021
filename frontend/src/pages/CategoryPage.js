@@ -17,17 +17,20 @@ function CategoryPage() {
   },[])
 
   if(isLoading){
-    return(<div>Laeb...</div>);
+    return(<div className="loadingDivInfo">Laeb...</div>);
   }
 
   return (
-    <div>
-      <Link to="add-category">
-        <button>Lisa uus kategooria</button>
-      </Link>
-      <CategoryList categories={loadedCategories}/>
-    </div>
+      <div>
+        <Link to="add-item">
+          <button className="goToNewPage"><img className="addLogo" src="add.png" alt="add icon"/> Lisa uus ese</button>
+        </Link>
+        <h1>Esemed</h1>
+        <div className="itemsPageBoxesArea">
+          <ItemList items={loadedItems}/>
+        </div>
+      </div>
   )
 }
 
-export default CategoryPage;
+export default Home;

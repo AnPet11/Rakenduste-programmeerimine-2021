@@ -26,9 +26,9 @@ function AddCategoryForm(props){
       <label>Kategooria tüüp</label>
       <br/>
       <select ref={typeImputRef}>
-        <option value="PREMIUM">PREMIUM</option>
-        <option value="DELUXE">DELUXE</option>
         <option value="BASIC">BASIC</option>
+        <option value="ED">ED</option>
+        <option value="DIVIDED">DIVIDED</option>
       </select>
       <br/><br/>
       <button>Sisesta uus kategooria</button>

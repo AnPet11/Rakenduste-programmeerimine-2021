@@ -1,4 +1,4 @@
-package ee.anneli.backend2.service;
+package ee.ang.backend2.service;
 
 import ee.anneli.backend2.model.Category;
 import ee.anneli.backend2.repository.CategoryRepository;

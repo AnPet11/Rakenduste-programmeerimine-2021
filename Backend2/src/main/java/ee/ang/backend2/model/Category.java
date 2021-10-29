@@ -26,5 +26,5 @@ public class Category {
 }
 
 enum CategoryType {
-    ODAV, KALLIS, KESKMINE
+    BASIC, ED, DIVIDED
 }
