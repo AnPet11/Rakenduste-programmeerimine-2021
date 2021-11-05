@@ -1,12 +1,16 @@
 import { useContext, useState, useRef, useEffect } from "react";
 import { Context } from "../store";
 import { addPost, removePost, updatePosts } from "../store/actions";
-import { Button } from 'antd';
-
+/* import { Button } from 'antd'; */
+import FormItemLabel from "antd/lib/form/FormItemLabel";
+import { Button, Input, Space, Table, Typography, Layout, Form } from "antd";
 function Posts() {
+<img width="1000" height="600" text src="Sheet.jpg"></img>
   const [title, setTitle] = useState("");
   const [state, dispatch] = useContext(Context);
   const inputRef = useRef(null);
+  const [date, setDate] = useState("");
+  const [author, setAuthor] = useState("");
 
   // Ilma dependency massivita ehk ilma [] kutsub välja igal renderdusel
   // tühja massiivi dependencyna esimest korda
@@ -19,15 +23,24 @@ function Posts() {
       },
       {
         id: 2,
-        title: "Test-prefetched-array-2"
+        title: "Test-prefetched-array-2",
+        date: new Date(1111, 1, 1),
+        birthday: new Date(4444, 11, 17),
+        author: "Jesus"
       },
       {
         id: 3,
-        title: "Test-prefetched-array-3"
+        title: "Test-prefetched-array-3",
+        date: new Date(1800, 5, 5),
+        birthday: new Date(1769, 8, 15),
+        author: "Napoleon"
       },
       {
         id: 4,
-        title: "Test-prefetched-array-4"
+        title: "Test-prefetched-array-4",
+        date: new Date(1945, 4, 30),
+        birthday: new Date(1889, 4, 20),
+        author: "Adolf"
       },
     ]))
   }, [])
@@ -83,10 +96,13 @@ function Posts() {
             🐑;  
             <button type="submit">BeEeEeE-E</button>
             
+            <Button type="primary" style={{ background: "#191970", borderColor: "white" }}>
+            OoPs!
+            </Button>   
             
-            <>
+            {/* <>
               <Button type="primary">OoPs!</Button>
-            </>
+            </> */}
             
           </span>
         </li>

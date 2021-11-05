@@ -11,8 +11,8 @@ router.post(
       .normalizeEmail()
       .withMessage("Must be correctly formatted e-mail"),
     check("password")
-      .isLength({ min: 6 })
-      .withMessage("Must be at least 6 characters long"),
+      .isLength({ min: 8 })
+      .withMessage("Must be at least 8 characters long"),
   ],
   validationMiddleware,
   authController.login
@@ -22,8 +22,8 @@ router.post(
   "/signup",
   [
     check("firstName")
-      .isLength({ min: 3 })
-      .withMessage("Must be at least 3 characters long")
+      .isLength({ min: 2 })
+      .withMessage("Must be at least 2 characters long")
       .trim()
       .exists()
       .matches(/^[A-ZÕÄÖÜa-zõäöü]+$/)
@@ -40,8 +40,8 @@ router.post(
       .normalizeEmail()
       .withMessage("Must be correctly formatted e-mail"),
     check("password")
-      .isLength({ min: 6 })
-      .withMessage("Must be at least 6 characters long"),
+      .isLength({ min: 8 })
+      .withMessage("Must be at least 8 characters long"),
   ],
   validationMiddleware,
   authController.signup

@@ -1,4 +1,4 @@
-import { Layout, Space, Typography } from "antd";
+import { Layout, Typography } from "antd";
 
 function Footer() {
     return (

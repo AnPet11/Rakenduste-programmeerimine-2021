@@ -9,6 +9,8 @@ import Content from "./components/Content";
 import Footer from "./components/Footer";
 import 'antd/dist/antd.css'
 
+
+
 /* function App() {
   return (
   <BrowserRouter>
@@ -29,7 +31,7 @@ function App() {
       
         <Header> </Header> 
         
-        <Content> <img width="100" height="200" src="Sheet.jpg"></img></Content>
+        <Content> </Content>
 
         <Footer> </Footer>
       

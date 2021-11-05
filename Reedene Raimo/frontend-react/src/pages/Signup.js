@@ -36,7 +36,7 @@ function Login() {
 
         if (res.ok) {
         setError('')
-        console.log("Sheet registered!")
+        console.log("Success! User registered!")
         } else {
         let errors = ''
         if (returnData.error) {
@@ -55,7 +55,7 @@ function Login() {
     <Layout>
         <Form
         name="basic"
-        style={{maxWidth: '40%', margin: 'auto'}}
+        style={{maxWidth: '50%', margin: 'auto'}}
         initialValues={{ remember: true }}
         onFinish={handleSubmit}
         autoComplete="off"
@@ -83,7 +83,7 @@ function Login() {
         </Form.Item>
 
         <Form.Item 
-            label="Password"
+            label="Sheetword"
             name="password"
             required
         >

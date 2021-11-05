@@ -12,7 +12,7 @@ const postReducer = (state, action) => {
         ...state,
         data: state.data.filter(post => post.id !== action.payload)
       }
-    // Kodutööna uue listi vastu võtmine maybe
+    
     case "POSTS_UPDATE": 
         return {
           ...state,
