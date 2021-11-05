@@ -1,15 +1,16 @@
 // import { BrowserRouter, Route, Switch } from "react-router-dom";
 // import ShowMagic from "./components/ShowMagic";
-import Posts from "./pages/Posts";
 // import { Button } from 'antd';
-import { BrowserRouter } from "react-router-dom";
-import { Layout } from "antd";
+/* import { Layout } from "antd"; */
+import { Layout, Space, Typography } from "antd";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import 'antd/dist/antd.css'
 import Header from "./components/Header";
 import Content from "./components/Content";
 import Footer from "./components/Footer";
-import 'antd/dist/antd.css'
-
-
+import PostsTabel from "./pages/PostsTabel";
+import ShowMagic from "./pages/ShowMagic";
+import Signin from "./pages/Signin";
 
 /* function App() {
   return (
@@ -31,7 +32,14 @@ function App() {
       
         <Header> </Header> 
         
-        <Content> </Content>
+        <Content>
+        <Switch>
+        <Route exact path="/" />
+        <Route exact path="/poststabel" component={PostsTabel} />
+        <Route exact path="/showmagic" component={ShowMagic} />
+        <Route exact path="/register" component={Signin} />
+        </Switch>
+        </Content>
 
         <Footer> </Footer>
       

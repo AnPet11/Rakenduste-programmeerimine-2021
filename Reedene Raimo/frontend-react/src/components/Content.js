@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+/* import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Posts from "../pages/Posts";
 import ShowMagic from "../pages/ShowMagic";
 import Signin from "../pages/Signin";
@@ -15,4 +15,4 @@ function Content() {
     );
 }
 
-export default Content
+export default Content */

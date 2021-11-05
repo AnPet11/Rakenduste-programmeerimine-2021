@@ -1,113 +1,106 @@
 import { Button, Input, Space, Table, Typography, Layout, Form } from "antd";
+import FormItemLabel from "antd/lib/form/FormItemLabel";
 import { useContext, useState, useRef, useEffect } from "react";
 import { Context } from "../store";
-import { loginUser } from "../store/actions";
+import { addTitle, removeTitle, updateTitles } from "../store/actions";
 
-function Login() {
-    const [username, setUsername] = useState("");
-    const [password, setPassword] = useState("");
+function PostsTabel() {
+    const [title, setTitle] = useState("");
+    const [author, setAuthor] = useState("");
+    const [date, setDate] = useState("");
     const [state, dispatch] = useContext(Context);
     const inputRef = useRef(null);
-    const [error, setError] = useState('')
+  // Ilma dependency massivita ehk ilma [] kutsub välja igal renderdusel
+  // tühja massiivi dependencyna esimest korda
+  // saab ka kutsuda teatud state muutustel välja
+    useEffect(() => {    
+    fetch('http://localhost:8081/api/title').then(res => {
+        return res.json();
+    }).then(async (data) => {
+        await dispatch(updateTitles(data))
+    })
+    }, [])
 
-    const handleSubmit = async (values) => {
+  // Või võite panna eraldi nupu, et "Get latest from database" (Sync)
 
-    const user = {
-        firstName: values.firstName,
-        lastName: values.lastName,
-        email: values.email,
-        password: values.password
+    const handleSubmit = (e) => {
+    e.preventDefault()
+
+        const newTitle = {
+            title,
+            authorId: state.auth.user.id,
+        }
     }
+    setTitle("")
 
-    if (!values.firstName || !values.lastName || !values.email || !values.password || !values.confirm) {
-        setError('Please fill out all fields')
-    } else if (values.password !== values.confirm) {
-        setError('Passwords do not match!')
-    } else {
-        const res = await fetch('http://localhost:8081/api/auth/signup', {
+    addNewTitle(newTitle)
+
+    if (inputRef.current) inputRef.current.focus()
+    
+    const addNewTitle = async (title) => {
+    const res = await fetch('http://localhost:8081/api/title/create', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-            body: JSON.stringify(user),
+            body: JSON.stringify(title),
         })
-
+    
         const returnData = await res.json()
+    
+        dispatch(addTitle(returnData))
+    };
 
-        if (res.ok) {
-        setError('')
-        console.log("Sheet registered!")
-        } else {
-        let errors = ''
-        if (returnData.error) {
-            errors = returnData.error
-        } else {
-            for (let i = 0; i < returnData.msg.length; i++) {
-            errors += returnData.msg[i].param[0].toUpperCase() + returnData.msg[i].param.slice(1) + ' ' + returnData.msg[i].msg + '\n'
-            }
-        }
-        setError(errors)
-        }
+    console.log({ inputRef });
+
+    const columns = [
+    {
+        title: 'ID',
+        dataIndex: 'id',
+        key: 'id',
+    },
+    {
+        title: "Pealkiri :3",
+        dataIndex: "title",
+        key: "title"
+    },
+    {
+        title: "Looja 🙏🙏🙏",
+        dataIndex: "authorId",
+        key: "authorId"
+    },
+    {
+        title: "Loodud",
+        dataIndex: "createdAt",
+        key: "createdAt"
+    },
+    {
+        title: 'ära puuttu 😡😡😡',
+        dataIndex: 'lastModified',
+        key: 'lastModified',
     }
-    }
+    ]
 
     return (
     <Layout>
-        <Form
-        name="basic"
-        style={{maxWidth: '40%', margin: 'auto'}}
-        initialValues={{ remember: true }}
-        onFinish={handleSubmit}
-        autoComplete="off"
-        >
-        <Form.Item 
-            label="First Name"
-            name="firstName"
-            required
-        >
-        <Input />
-        </Form.Item>
-        <Form.Item 
-            label="Last Name"
-            name="lastName"
-            required
-        >
-        <Input />
-        </Form.Item>
-        <Form.Item 
-            label="E-mail"
-            name="email"
-            required
-        >
-        <Input />
-        </Form.Item>
-
-        <Form.Item 
-            label="Password"
-            name="password"
-            required
-        >
-        <Input.Password />
-        </Form.Item>
-
-        <Form.Item 
-            label="Confirm Password"
-            name="confirm"
-            required
-        >
-        <Input.Password />
-        </Form.Item>
-        { error && <Typography.Text style={{whiteSpace: 'pre-wrap'}} type="danger">{ error }</Typography.Text> }
-
-        <Form.Item style={{textAlign: 'center'}}>
-            <Button type="primary" htmlType="submit">
-            Submit
-            </Button>
-        </Form.Item>
-
-        </Form>
+        {state.auth.token &&
+        (
+            <form onSubmit={handleSubmit}>
+            <Input
+                style={{margin: '10px', maxWidth: '50%'}}
+                ref={inputRef}
+                type="text"
+                value={title}
+                onChange={e => setTitle(e.target.value)}
+                autoFocus
+            />
+            <Button htmlType="submit" type="primary">Submit</Button>
+            </form>
+        )
+        }
+        <Table dataSource={state.titles.data} columns={columns} />
     </Layout>
     );
-}
+};
 
-export default Login;
+export default PostsTabel;
