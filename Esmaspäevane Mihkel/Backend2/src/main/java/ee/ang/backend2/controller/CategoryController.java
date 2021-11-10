@@ -25,6 +25,6 @@ public class CategoryController {
     @PostMapping("categories")
     public String postCategory(@RequestBody Category category){
         categoryService.saveCategory(category);
-        return "Kategooria edukalt lisatud: " + category.getName() + ". Ja kategooriatüüp: " + category.getCategory();
+        return "Kategooria tehtud: " + category.getName() + ". Ja kategooriatüüp: " + category.getCategory();
     }
 }

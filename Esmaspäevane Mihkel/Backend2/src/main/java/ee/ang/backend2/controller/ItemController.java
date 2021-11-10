@@ -23,7 +23,7 @@ public class ItemController {
     public void postItem(@RequestBody Item item){
         itemService.saveItem(item);
     }
-
+    @ApiOperation("ID kaasa annab vist")
     @PostMapping("edit-item")
     public void editItem(@RequestBody Item item) {
         itemService.editItem(item);

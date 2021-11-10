@@ -1,18 +1,155 @@
+
+section {
+  display: flex;
+  width: 100vw;
+  justify-content: center;
+}
+
+.goToNewPageBtnArea {
+  width: 90vw;
+  max-width: 1380px;
+  justify-content: flex-start;
+}
+
+.cartInfo {
+  width: 100vw;
+  text-align: center;
+  line-height: 200px;
+}
+
+.SingleItemPageArea {
+  display: flex;
+  justify-content: center;
+}
+
+
+.itemsListBoxesArea, .categoryListBoxesArea {
+  width: 90vw;
+  max-width: 1380px;
+  display:grid;
+  grid-template-columns: repeat(auto-fill, 255px);
+  grid-column-gap: 30px;
+  grid-row-gap: 20px;
+  justify-content: space-evenly;
+}
+
+.itemBox, .categoryBox {
+  box-sizing: content-box;
+  border: 1px solid #b38e10;
+  border-radius: 5px;
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+}
+
+.itemBox {
+  height: 140px;
+}
+
+.categoryBox {
+  height: 50px;
+}
+
+.itemId, .itemName, .itemPrice, .itemCategory, .categoryName, .categoryType {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+@media screen and (max-width: 600px) {
+  .itemBox, .categoryBox {
+    padding: 20px;
+  }
+}
+
+
+
+
 h1 {
   text-align: center;
 }
 
-button {
-  cursor: pointer;
-  border-radius: 3px;
-  border: black 1px solid;
-  padding: 5px;
+a {
+  color: #942323;
+  text-decoration: none;
 }
 
-button:hover {
-  background-color: white;
+@media screen and (max-width: 600px) {
+  h1 {
+    font-size: 24px;
+  }
+}
+
+
+form {
+  text-align: center;
 }
 
 select {
   cursor: pointer;
+}
+
+input, select {
+  border-radius: 5px;
+  border: 1px solid black;
+  padding: 10px;
+  margin-top: 5px;
+}
+
+
+
+/* Different buttons */
+button {
+  cursor: pointer;
+  border-radius: 5px;
+  border: black 1px groove;
+  padding: 8px;
+  background-color: lightblue;
+  transition: 0.3s;
+}
+
+button:hover {
+  background-color: #FAFAFA;
+  transform: scale(1.05);
+}
+
+.goToNewPageBtn {
+  margin-top: 30px;
+}
+
+.addToCartBtn {
+  margin-top: 15px;
+}
+
+.goToNewPageBtn img, .addToCartBtn img {
+  width: 15px;
+  vertical-align: middle;
+  margin-bottom: 3px;
+}
+
+.editDeleteBtnContainer {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.deleteItemBtn, .editItemBtn {
+  background-color: rgb(194, 228, 240);
+  border: none;
+}
+
+.deleteItemBtn:hover, .editItemBtn:hover {
+  border: black 1px groove;
+}
+
+.deleteItemBtn img, .editItemBtn img {
+  width: 20px;
+  vertical-align: middle;
+}
+
+@media screen and (max-width: 600px) {
+  .goToNewPageBtn {
+    margin-top: 10px;
+  }
 }

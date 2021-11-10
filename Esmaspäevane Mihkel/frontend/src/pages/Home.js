@@ -17,21 +17,17 @@ function Home() {
   },[])
 
   if(isLoading){
-    return(<div>Laeb...</div>);
+    return(<Loader/>);
   }
 
-  return (
-    <div>
-      <Link to="categories">
-        <button>Kategooriaid</button>
-      </Link>
-      <br/>
-      <Link to="add-item">
-        <button>Lisa uus ese</button>
-      </Link>
-      <ItemList items={loadedItems}/>
-    </div>
-  )
+    return (
+        <>
+            <h1>Esemed</h1>
+            <section>
+                <ItemList isAddToCart={true} items={loadedItems}/>
+            </section>
+        </>
+    )
 }
 
 export default Home;

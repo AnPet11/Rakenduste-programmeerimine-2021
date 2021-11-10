@@ -1,36 +1,43 @@
 import {Link} from 'react-router-dom';
 import CategoryList from '../components/CategoryList';
 import {useState, useEffect} from 'react';
+import Loader from '../components/Loader';
 
 function CategoryPage() {
-  const [isLoading, setIsLoading] = useState(true);
-  const [loadedCategories, setLoadedCategories] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
+    const [loadedCategories, setLoadedCategories] = useState([]);
 
-  useEffect(()=>{
-    fetch('http://localhost:8080/categories').then(res => {
-      return res.json();
-    }).then(data => {
-      console.log(data);
-      setIsLoading(false);
-      setLoadedCategories(data);
-    });
-  },[])
+    useEffect(()=>{
+        fetch('http://localhost:8080/categories').then(res => {
+            return res.json();
+        }).then(data => {
+            setIsLoading(false);
+            setLoadedCategories(data);
+        });
+    },[])
 
-  if(isLoading){
-    return(<div className="loadingDivInfo">Laeb...</div>);
-  }
+    if(isLoading){
+        return (<Loader/>)
+    }
 
-  return (
-      <div>
-        <Link to="add-item">
-          <button className="goToNewPage"><img className="addLogo" src="add.png" alt="add icon"/> Lisa uus ese</button>
-        </Link>
-        <h1>Esemed</h1>
-        <div className="itemsPageBoxesArea">
-          <ItemList items={loadedItems}/>
-        </div>
-      </div>
-  )
+    return (
+        <>
+            <section>
+                <div className="goToNewPageBtnArea">
+                    <Link to="add-category">
+                        <button className="goToNewPageBtn">
+                            <img src="add-folder.png" alt="add icon"/>
+                            <span> Lisa uus kategooria</span>
+                        </button>
+                    </Link>
+                </div>
+            </section>
+            <h1>Kategooriad</h1>
+            <section>
+                <CategoryList categories={loadedCategories}/>
+            </section>
+        </>
+    )
 }
 
-export default Home;
+export default CategoryPage;

@@ -8,7 +8,6 @@ function CategoryList(props){
           key={category.id}
           name={category.name} 
           type={category.category}/>
-          // Because category.category is how Class is defined in BE.
       ))}
     </div>
   );
